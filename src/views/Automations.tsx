@@ -71,7 +71,7 @@ export default function Automations() {
   const [scriptOpen, setScriptOpen] = useState<Record<string, boolean>>({});
   const [history, setHistory] = useState<HistoryRow[]>(SEED_HISTORY);
   const [modal, setModal] = useState(false);
-  const [form, setForm] = useState({ name: "", target: "", schedule: "Hourly", runNow: true, script: "# my_scraper.py — runs inside the Meridian sandbox\nimport requests\nfrom bs4 import BeautifulSoup\n\n# resp = requests.get(\"https://source.example.com/table\", timeout=20)\n# rows = [...]\n# meridian.upsert(dataset=\"my_dataset\", rows=rows, key=[\"id\"])" });
+  const [form, setForm] = useState({ name: "", target: "", schedule: "Hourly", runNow: true, script: "# my_scraper.py — runs inside the Ruta Bahagia sandbox\nimport requests\nfrom bs4 import BeautifulSoup\n\n# resp = requests.get(\"https://source.example.com/table\", timeout=20)\n# rows = [...]\n# ruta.upsert(dataset=\"my_dataset\", rows=rows, key=[\"id\"])" });
 
   const consoleRef = useRef<HTMLDivElement>(null);
   const timeouts = useRef<number[]>([]);
@@ -299,7 +299,7 @@ export default function Automations() {
               </p>
               <p className="mt-1.5 text-[12.5px] leading-relaxed text-mute">
                 Paste any scraper — requests, BeautifulSoup, Selenium — into a job. The runner executes it in a
-                sandboxed venv and routes results into a dataset via <code className="rounded bg-raise px-1 py-0.5 font-mono text-[11px] text-green">meridian.upsert()</code>.
+                sandboxed venv and routes results into a dataset via <code className="rounded bg-raise px-1 py-0.5 font-mono text-[11px] text-green">ruta.upsert()</code>.
               </p>
             </div>
           </Reveal>

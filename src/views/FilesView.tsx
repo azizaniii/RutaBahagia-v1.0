@@ -50,7 +50,7 @@ export default function FilesView() {
   };
 
   const downloadFile = (f: CloudFile) => {
-    const blob = new Blob([`Meridian workspace export\nfile: ${f.name}\npath: /${f.folder}\nsynced from cloud.meridian.office\n`], { type: "text/plain;charset=utf-8" });
+    const blob = new Blob([`Ruta Bahagia workspace export\nfile: ${f.name}\npath: /${f.folder}\nsynced from cloud.rutabahagia.id\n`], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -61,7 +61,7 @@ export default function FilesView() {
   };
 
   const copyLink = (f: CloudFile) => {
-    const link = `https://cloud.meridian.office/s/${f.id}${f.id.length < 6 ? "x7q2" : ""}`;
+    const link = `https://cloud.rutabahagia.id/s/${f.id}${f.id.length < 6 ? "x7q2" : ""}`;
     navigator.clipboard?.writeText(link).then(
       () => push(`Share link copied · ${f.name}`),
       () => push("Clipboard unavailable in this browser.", "warn"),
@@ -92,7 +92,7 @@ export default function FilesView() {
     if (fileInput.current) fileInput.current.value = "";
   };
 
-  const crumbs = [{ label: "meridian-workspace", path: [] as string[] }, ...path.map((p, i) => ({ label: p, path: path.slice(0, i + 1) }))];
+  const crumbs = [{ label: "rutabahagia-workspace", path: [] as string[] }, ...path.map((p, i) => ({ label: p, path: path.slice(0, i + 1) }))];
 
   return (
     <div className="space-y-6">
@@ -128,7 +128,7 @@ export default function FilesView() {
               <p className="flex items-center gap-2 font-display text-[15.5px] font-semibold tracking-tight">
                 Nextcloud Hub 9 <Pill tone="green"><StatusDot tone="green" pulse /> Connected</Pill>
               </p>
-              <p className="mt-0.5 font-mono text-[11.5px] text-faint">https://cloud.meridian.office · WebDAV + JWT</p>
+              <p className="mt-0.5 font-mono text-[11.5px] text-faint">https://cloud.rutabahagia.id · WebDAV + JWT</p>
             </div>
           </div>
           <div className="lg:col-span-5">
@@ -305,7 +305,7 @@ export default function FilesView() {
 
       <Reveal delay={80}>
         <p className="flex items-center gap-2 font-mono text-[11px] text-faint">
-          <IcCloud size={13} className="text-cyan" /> Files open in ONLYOFFICE write straight back to <span className="text-mute">/{current || "meridian-workspace"}</span> via the WebDAV bridge.
+          <IcCloud size={13} className="text-cyan" /> Files open in ONLYOFFICE write straight back to <span className="text-mute">/{current || "rutabahagia-workspace"}</span> via the WebDAV bridge.
         </p>
       </Reveal>
 

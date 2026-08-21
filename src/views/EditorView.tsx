@@ -9,7 +9,7 @@ const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const DEFAULT_DOC: CloudFile = { id: "f9", name: "offer-letter.docx", type: "docx", folder: "Templates", size: "22 KB", updated: "3 d ago", sync: "synced", owner: "JW" };
 
 const DEFAULT_HTML = `<h1>Consultant Offer Letter</h1>
-<p><b>Meridian Group · People Operations</b><br>14 Harbour Quay, Rotterdam</p>
+<p><b>Ruta Bahagia Group · People Operations</b><br>Menara Bahagia, Jl. Jend. Sudirman Kav. 52, Jakarta</p>
 <h2>1. The offer</h2>
 <p>Following your interviews with the operations team, we are delighted to extend this offer of employment. The terms below reflect what was discussed during your final conversation with the panel.</p>
 <ul>
@@ -18,7 +18,7 @@ const DEFAULT_HTML = `<h1>Consultant Offer Letter</h1>
 <li>Reporting line and primary workspace</li>
 </ul>
 <h2>2. Acceptance</h2>
-<p>This offer remains valid for <b>ten (10) business days</b>. Please countersign and return the attached copy to <u>people-ops@meridian.office</u>.</p>
+<p>This offer remains valid for <b>ten (10) business days</b>. Please countersign and return the attached copy to <u>people-ops@rutabahagia.id</u>.</p>
 <p>We look forward to welcoming you aboard.</p>`;
 
 const FONTS = ["IBM Plex Sans", "Space Grotesk", "Georgia", "IBM Plex Mono"];
@@ -140,7 +140,7 @@ export default function EditorView() {
           <button
             className="btn px-3 py-1.5 text-[12.5px]"
             onClick={() => {
-              navigator.clipboard?.writeText(`https://office.meridian.office/d/${doc.id}`).then(
+              navigator.clipboard?.writeText(`https://office.rutabahagia.id/d/${doc.id}`).then(
                 () => push("Editor link copied — share it with your team."),
                 () => push("Clipboard unavailable in this browser.", "warn"),
               );

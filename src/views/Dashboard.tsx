@@ -58,7 +58,7 @@ export default function Dashboard() {
     {
       id: "files" as const,
       name: "Nextcloud files",
-      desc: "Workspace files bridged from cloud.meridian.office",
+      desc: "Workspace files bridged from cloud.rutabahagia.id",
       icon: IcCloud,
       meta: "34.2 GB of 100 GB synced",
       span: "lg:col-span-5",
@@ -85,7 +85,7 @@ export default function Dashboard() {
             <Scramble text="Operations overview" />
           </h1>
           <p className="mt-3 max-w-xl text-[13.5px] leading-relaxed text-mute">
-            {now.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" })} · Meridian HQ workspace.
+            {now.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" })} · Ruta Bahagia HQ workspace.
             Five modules, one pipeline: scrape → merge → ship.
           </p>
         </div>
@@ -149,7 +149,7 @@ export default function Dashboard() {
             <p className="mt-2 font-display text-[40px] font-bold leading-none tracking-tight text-cyan">
               <CountUp value={99} suffix=".2%" />
             </p>
-            <p className="mt-3 font-mono text-[11px] text-faint">Nextcloud ↔ Meridian bridge · 42 ms</p>
+            <p className="mt-3 font-mono text-[11px] text-faint">Nextcloud ↔ Ruta Bahagia bridge · 42 ms</p>
           </div>
         </Reveal>
       </div>
@@ -188,7 +188,7 @@ export default function Dashboard() {
               <h2 className="font-display text-[16px] font-semibold tracking-tight">Integrations</h2>
               <div className="mt-3 space-y-3.5">
                 {[
-                  { name: "Nextcloud Hub 9", sub: "cloud.meridian.office · 34.2 GB / 100 GB", tone: "green" as const, to: "files" as const, bar: 34 },
+                  { name: "Nextcloud Hub 9", sub: "cloud.rutabahagia.id · 34.2 GB / 100 GB", tone: "green" as const, to: "files" as const, bar: 34 },
                   { name: "ONLYOFFICE Document Server", sub: "v8.2.1 · JWT secured · 24 ms", tone: "green" as const, to: "editor" as const, bar: 0 },
                   { name: "Python runner", sub: "venv 3.12 · 5 jobs registered", tone: "amber" as const, to: "automations" as const, bar: 0 },
                 ].map((it) => (

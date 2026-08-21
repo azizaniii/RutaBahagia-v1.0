@@ -148,7 +148,7 @@ function Shell() {
             <LogoMark size={20} />
           </span>
           <span className="hidden min-w-0 xl:block">
-            <span className="block font-display text-[16px] font-bold leading-none tracking-tight">MERIDIAN</span>
+            <span className="block font-display text-[16px] font-bold leading-none tracking-tight">RUTA BAHAGIA</span>
             <span className="mt-1 block font-mono text-[9.5px] uppercase tracking-[0.22em] text-faint">Office OS</span>
           </span>
         </button>
@@ -208,7 +208,7 @@ function Shell() {
         <header className="sticky top-0 z-30 border-b border-line bg-bg/85 backdrop-blur-md">
           <div className="flex items-center gap-4 px-5 py-3 lg:px-8">
             <span className="hidden shrink-0 font-mono text-[10.5px] uppercase tracking-[0.18em] text-faint md:block">
-              Meridian <span className="text-line2">/</span> <span className="text-mute">{current?.label}</span>
+              Ruta Bahagia <span className="text-line2">/</span> <span className="text-mute">{current?.label}</span>
             </span>
             <div className="flex flex-1 justify-center px-2">
               <GlobalSearch />
@@ -235,7 +235,7 @@ function Shell() {
 
         <footer className="border-t border-line px-5 py-3 lg:px-8">
           <p className="font-mono text-[10.5px] text-faint">
-            Meridian Office OS · automation → merge → timeline → files → editor · session secured with workspace JWT
+            Ruta Bahagia Office OS · automation → merge → timeline → files → editor · session secured with workspace JWT
           </p>
         </footer>
       </div>

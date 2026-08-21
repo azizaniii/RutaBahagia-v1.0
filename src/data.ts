@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ */
-/*  Meridian · shared types & seed data                                */
+/*  Ruta Bahagia · shared types & seed data                            */
 /* ------------------------------------------------------------------ */
 
 export type ViewId = "dashboard" | "automations" | "merge" | "timeline" | "files" | "editor";
@@ -85,7 +85,7 @@ export const OWNERS: Record<string, { name: string; color: string }> = {
 
 /* ------------------------------- scripts ------------------------------- */
 
-const SCRIPT_VENDORS = `# fetch_vendor_pricebook.py  ·  runs in the Meridian sandbox venv
+const SCRIPT_VENDORS = `# fetch_vendor_pricebook.py  ·  runs in the Ruta Bahagia sandbox venv
 import requests, json
 from bs4 import BeautifulSoup
 
@@ -99,7 +99,7 @@ for tr in BeautifulSoup(resp.text, "html.parser").select("table#prices tr")[1:]:
     if len(cols) == 5:
         rows.append(dict(zip(["vendor", "item", "unit_price", "lead_time", "updated"], cols)))
 
-meridian.upsert(dataset="vendors", rows=rows, key=["vendor", "item"])`;
+ruta.upsert(dataset="vendors", rows=rows, key=["vendor", "item"])`;
 
 const SCRIPT_HRIS = `# pull_hris_consultants.py
 import os, requests
@@ -112,7 +112,7 @@ data = requests.get(
     timeout=30,
 ).json()
 
-meridian.upsert(dataset="consultants", rows=data["results"],
+ruta.upsert(dataset="consultants", rows=data["results"],
                 key=["name"])`;
 
 const SCRIPT_BRANCHES = `# sync_branch_registry.py
@@ -128,26 +128,26 @@ rows = [{
     "headcount": str(f["properties"]["headcount"]),
 } for f in payload["features"]]
 
-meridian.upsert(dataset="branches", rows=rows, key=["branch"])`;
+ruta.upsert(dataset="branches", rows=rows, key=["branch"])`;
 
 const SCRIPT_ATTENDANCE = `# sync_attendance_portal.py  ·  ⚠ token expired — see run log
 import requests, os
 
 sess = requests.Session()
 sess.post("https://attendance.example.com/login",
-          json={"user": "svc-meridian", "pass": os.environ["ATT_PW"]}, timeout=15)
+          json={"user": "svc-ruta", "pass": os.environ["ATT_PW"]}, timeout=15)
 
 export = sess.get("https://attendance.example.com/export?fmt=csv", timeout=60)
 export.raise_for_status()
-meridian.load_csv(dataset="attendance", text=export.text)`;
+ruta.load_csv(dataset="attendance", text=export.text)`;
 
 const SCRIPT_FX = `# fx_reference_rates.py  ·  ⏳ awaiting final script from ops team
-# Paste the Python automation here — Meridian will execute it inside
+# Paste the Python automation here — Ruta Bahagia will execute it inside
 # the sandboxed runner and route the result into a dataset.
 #
 # def main():
 #     ...
-#     meridian.upsert(dataset="fx_rates", rows=rows, key=["pair", "day"])`;
+#     ruta.upsert(dataset="fx_rates", rows=rows, key=["pair", "day"])`;
 
 /* ------------------------------- jobs ------------------------------- */
 
@@ -258,12 +258,12 @@ export const SEED_DATASETS: Dataset[] = [
     updatedAt: "2 d ago",
     columns: ["branch", "city", "region", "head", "headcount"],
     rows: [
-      { branch: "Meridian North", city: "Rotterdam", region: "EMEA", head: "S. van Dijk", headcount: "42" },
-      { branch: "Meridian Gulf", city: "Dubai", region: "MEA", head: "K. Al-Farsi", headcount: "27" },
-      { branch: "Meridian Pacific", city: "Singapore", region: "APAC", head: "M. Tan", headcount: "35" },
-      { branch: "Meridian Andes", city: "Bogotá", region: "LATAM", head: "C. Rueda", headcount: "19" },
-      { branch: "Meridian Lakes", city: "Chicago", region: "NA", head: "D. Okafor", headcount: "51" },
-      { branch: "Meridian South", city: "Sydney", region: "APAC", head: "P. Nguyen", headcount: "23" },
+      { branch: "Ruta Bahagia Utara", city: "Jakarta", region: "ID-WEST", head: "S. Prasetyo", headcount: "42" },
+      { branch: "Ruta Bahagia Timur", city: "Surabaya", region: "ID-EAST", head: "K. Wulandari", headcount: "27" },
+      { branch: "Ruta Bahagia Pacific", city: "Singapore", region: "APAC", head: "M. Tan", headcount: "35" },
+      { branch: "Ruta Bahagia Andes", city: "Bogotá", region: "LATAM", head: "C. Rueda", headcount: "19" },
+      { branch: "Ruta Bahagia Lakes", city: "Chicago", region: "NA", head: "D. Okafor", headcount: "51" },
+      { branch: "Ruta Bahagia South", city: "Sydney", region: "APAC", head: "P. Nguyen", headcount: "23" },
     ],
   },
 ];
@@ -276,8 +276,8 @@ export const SEED_TEMPLATES: Template[] = [
     name: "Consultant offer letter",
     kind: "letter",
     updatedAt: "Edited 3 d ago",
-    body: `MERIDIAN GROUP · PEOPLE OPERATIONS
-14 Harbour Quay, Rotterdam
+    body: `RUTA BAHAGIA GROUP · PEOPLE OPERATIONS
+Menara Bahagia, Jl. Jend. Sudirman Kav. 52, Jakarta
 
 {{start_date}}
 
@@ -286,24 +286,24 @@ To: {{name}}
 
 Dear {{name}},
 
-Following your interviews with the operations team, we are delighted to offer you the position of {{position}} at Meridian Group, effective {{start_date}}.
+Following your interviews with the operations team, we are delighted to offer you the position of {{position}} at Ruta Bahagia Group, effective {{start_date}}.
 
 Your starting compensation will be {{salary}} per month, payable in arrears, and will be reviewed at the quarterly calibration cycle. Your reporting manager will be {{manager}}, based in {{city}}.
 
-This offer remains valid for ten (10) business days. Please countersign and return the attached copy to people-ops@meridian.office.
+This offer remains valid for ten (10) business days. Please countersign and return the attached copy to people-ops@rutabahagia.id.
 
 We look forward to welcoming you aboard.
 
 Sincerely,
 Rania Adeyemi
-Head of Operations, Meridian Group`,
+Head of Operations, Ruta Bahagia Group`,
   },
   {
     id: "tpl-vendor",
     name: "Vendor price-update notice",
     kind: "docx",
     updatedAt: "Edited 1 w ago",
-    body: `MERIDIAN GROUP · PROCUREMENT DESK
+    body: `RUTA BAHAGIA GROUP · PROCUREMENT DESK
 
 Subject: Updated pricing — {{item}}
 
@@ -315,7 +315,7 @@ If any of the above figures are incorrect, please reply to this notice within fi
 
 Kind regards,
 Procurement Desk
-Meridian Group`,
+Ruta Bahagia Group`,
   },
   {
     id: "tpl-memo",
@@ -328,9 +328,9 @@ Branch: {{branch}} ({{city}})
 Branch head: {{head}}
 Active headcount: {{headcount}}
 
-Effective next Monday, all {{region}} branches will move expense approvals into the Meridian console. {{head}} will receive delegation rights for claims up to $2,500.
+Effective next Monday, all {{region}} branches will move expense approvals into the Ruta Bahagia console. {{head}} will receive delegation rights for claims up to $2,500.
 
-Please confirm acknowledgement by replying to ops@meridian.office.
+Please confirm acknowledgement by replying to ops@rutabahagia.id.
 
 — Operations Desk`,
   },
@@ -350,7 +350,7 @@ export const SEED_TASKS: TimelineTask[] = [
   { id: "t9", title: "Merge audit sign-off", track: "Documents", owner: "RA", start: 24, end: 24, status: "todo", milestone: true, note: "Compliance spot-checks 10% of generated documents." },
   { id: "t10", title: "Nextcloud 29 upgrade", track: "Infrastructure", owner: "MK", start: 0, end: 5, status: "done", note: "Zero-downtime upgrade; DAV endpoints verified." },
   { id: "t11", title: "ONLYOFFICE 8.2 rollout", track: "Infrastructure", owner: "MK", start: 8, end: 16, status: "done", note: "Document Server connected; JWT secret rotated." },
-  { id: "t12", title: "WebDAV sync hardening", track: "Infrastructure", owner: "MK", start: 15, end: 26, status: "active", note: "Retry backoff + conflict policy for the Meridian file bridge." },
+  { id: "t12", title: "WebDAV sync hardening", track: "Infrastructure", owner: "MK", start: 15, end: 26, status: "active", note: "Retry backoff + conflict policy for the Ruta Bahagia file bridge." },
   { id: "t13", title: "Quota policy & retention", track: "Infrastructure", owner: "RA", start: 26, end: 34, status: "todo", note: "100 GB workspace quota, 2-year retention on Archive." },
   { id: "t14", title: "Quarter close", track: "Infrastructure", owner: "RA", start: 38, end: 38, status: "todo", milestone: true, note: "All merges filed, datasets frozen, reports distributed." },
 ];
